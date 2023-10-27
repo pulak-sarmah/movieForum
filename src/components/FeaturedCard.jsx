@@ -1,12 +1,18 @@
 import { PropTypes } from "prop-types";
+
 function FeaturedCard({ data }) {
-  const [FeaturedData] = data.filter((movie) => movie.genre === "featured");
+  const featuredMovie = data.filter((movie) => movie.featured === true);
+
+  function getRandomIndex(arr) {
+    return Math.floor(Math.random() * arr.length);
+  }
+  const movieIndex = getRandomIndex(featuredMovie);
 
   return (
     <section className="relative mb-10">
       <div className="relative flex items-center justify-center">
         <img
-          src={FeaturedData.img}
+          src={featuredMovie[movieIndex]?.image}
           alt="featured"
           className="object-cover object-center w-full h-auto max-h-96 opacity-80"
         />

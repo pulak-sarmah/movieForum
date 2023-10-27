@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="flex items-center justify-between mb-1 font-bold border-b-2 border-orange-400 ">
+    <header className="sticky top-0 z-10 flex items-center justify-between mb-1 font-bold border-b-2 border-orange-400 main-color">
       <Link to={"/"}>
         <h1 className="p-3 text-xl font-bold text-orange-400 cursor-pointer sm:text-2xl lg:text-3xl xl:text-4xl">
           Movie<span className="text-slate-200">Forum</span>
