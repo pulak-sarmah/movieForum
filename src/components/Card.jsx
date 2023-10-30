@@ -20,7 +20,11 @@ export function Card({ movie }) {
         <p className="flex items-center gap-2">
           <span className="text-gray-400">Rating:</span>
 
-          <Rating value={3} name="read-only" readOnly />
+          <Rating
+            value={movie?.rating / movie?.rated}
+            name="read-only"
+            readOnly
+          />
         </p>
         <p>
           <span className="text-gray-400">Year:</span> {movie.year}

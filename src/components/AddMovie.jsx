@@ -3,8 +3,13 @@ import { TailSpin } from "react-loader-spinner";
 import { addDoc } from "firebase/firestore";
 import { moviesRef } from "../firebase/firebase";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AppState } from "../App";
+import { useNavigate } from "react-router-dom";
 
 function AddMovie() {
+  const useAppState = useContext(AppState);
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
     year: "",
@@ -12,6 +17,8 @@ function AddMovie() {
     genre: "",
     image: "",
     featured: false,
+    rated: 0,
+    rating: 0,
   });
 
   const [loading, setLoading] = useState(false);
@@ -27,12 +34,16 @@ function AddMovie() {
       return;
     setLoading(true);
     try {
-      await addDoc(moviesRef, form);
-      Swal.fire({
-        title: "Movie Added successfully",
-        icon: "success",
-        timer: 3000,
-      });
+      if (useAppState.login) {
+        await addDoc(moviesRef, form);
+        Swal.fire({
+          title: "Movie Added successfully",
+          icon: "success",
+          timer: 3000,
+        });
+      } else {
+        navigate("/login");
+      }
     } catch (err) {
       console.log(err.Message);
       Swal.fire({

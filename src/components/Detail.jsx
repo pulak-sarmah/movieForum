@@ -14,10 +14,11 @@ export const Detail = () => {
     image: "",
     genre: "",
     description: "",
+    rating: 0,
+    rated: 0,
   });
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-
   useEffect(() => {
     setLoading(true);
 
@@ -53,10 +54,10 @@ export const Detail = () => {
         <h1 className="text-2xl font-bold text-gray-400 md:text-3xl">
           {data.title} <span className="text-md md:text-xl">({data.year})</span>
         </h1>
-        <Rating value={3.5} name="read-only" readOnly />
+        <Rating value={data?.rating / data?.rated} name="read-only" readOnly />
         <p className="mt-3 ">{data.description}</p>
 
-        <Reviews />
+        <Reviews id={id} prevRating={+data.rating} userRated={+data.rated} />
       </div>
     </div>
   );
