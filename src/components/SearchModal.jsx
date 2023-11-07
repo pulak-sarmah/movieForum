@@ -5,7 +5,7 @@ function SearchModal({ data, movieName, setMovieName, setSearchMovie }) {
   console.log(setMovieName, movieName);
 
   const searchMovie = data.filter((movie) =>
-    movie.title.toLowerCase().includes(movieName)
+    movie.title.toLowerCase().includes(movieName.toLowerCase())
   );
 
   console.log(searchMovie);
