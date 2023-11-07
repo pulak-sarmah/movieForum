@@ -7,10 +7,9 @@ function Search({ setSearchMovie, movieName, setMovieName }) {
         type="text"
         placeholder="Search Movie..."
         onFocus={() => setSearchMovie(true)}
-        // onBlur={() => setSearchMovie(false)}
         value={movieName}
         onChange={(e) => setMovieName(e.target.value)}
-        className="w-full px-3 py-1 text-base leading-8 text-gray-900 transition-colors duration-200 ease-in-out bg-opacity-50 border border-gray-300 rounded outline-none bg-grey-300 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-200"
+        className="w-full px-3 py-1 text-base leading-8 text-gray-900 transition-colors duration-200 ease-in-out bg-opacity-50 border border-gray-300 rounded outline-none md:w-96 bg-grey-300 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-200"
       />
     </div>
   );
