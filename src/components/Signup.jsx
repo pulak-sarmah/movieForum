@@ -11,7 +11,8 @@ import { addDoc } from "firebase/firestore";
 import { usersRef } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
-
+import { AppState } from "../App";
+import { useContext } from "react";
 const auth = getAuth(app);
 
 function Signup() {
@@ -24,6 +25,7 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
+  const useAppstate = useContext(AppState);
 
   const generateRecaptha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -61,7 +63,10 @@ function Signup() {
       window.confirmationResult.confirm(otp).then((result) => {
         console.log(result);
         uploadData();
-        navigate("/login");
+
+        useAppstate.setLogin(true);
+
+        navigate("/");
         setLoading(false);
       });
     } catch (error) {
